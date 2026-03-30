@@ -1,0 +1,52 @@
+{
+  "name": "circuitmess-esp32",
+  "title": "CircuitMess ESP32",
+  "description": "Custom PlatformIO platform for CircuitMess ESP32 devices (Chatter 2.0, etc.) using the CircuitMess Arduino-ESP32 v1.8.3 fork with ESP-IDF 3.x runtime.",
+  "homepage": "https://github.com/ASIXicle/CrowS",
+  "license": "MIT",
+  "keywords": [
+    "dev-platform",
+    "Wi-Fi",
+    "Bluetooth",
+    "Xtensa",
+    "LX6",
+    "CircuitMess",
+    "Chatter"
+  ],
+  "engines": {
+    "platformio": "^5 || ^6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ASIXicle/platform-circuitmess-esp32.git"
+  },
+  "version": "1.0.0",
+  "frameworks": {
+    "arduino": {
+      "package": "framework-arduinoespressif32-cm",
+      "script": "builder/frameworks/arduino.py"
+    }
+  },
+  "packages": {
+    "toolchain-xtensa32": {
+      "type": "toolchain",
+      "owner": "platformio",
+      "version": "~2.50200.0"
+    },
+    "framework-arduinoespressif32-cm": {
+      "type": "framework",
+      "optional": true
+    },
+    "tool-esptoolpy": {
+      "type": "uploader",
+      "owner": "platformio",
+      "version": "~1.30100.0"
+    },
+    "tool-mkspiffs": {
+      "type": "uploader",
+      "optional": true,
+      "owner": "platformio",
+      "version": "~2.230.0"
+    }
+  }
+}

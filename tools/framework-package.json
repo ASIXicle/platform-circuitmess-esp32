@@ -1,0 +1,17 @@
+{
+  "name": "framework-arduinoespressif32-cm",
+  "version": "1.8.3",
+  "description": "CircuitMess Arduino-ESP32 fork v1.8.3 (ESP-IDF 3.x) for Chatter 2.0 and other CM devices",
+  "keywords": [
+    "framework",
+    "arduino",
+    "esp32",
+    "circuitmess",
+    "chatter"
+  ],
+  "homepage": "https://github.com/CircuitMess/Arduino-ESP32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CircuitMess/Arduino-ESP32.git"
+  }
+}
