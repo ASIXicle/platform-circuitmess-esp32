@@ -232,11 +232,8 @@ env.Append(
         join(SDK_DIR, "ld"),
     ],
 
-    LIBS=[
-        "-Wl,--start-group"
-    ] + sdk_libs + [
+    LIBS=sdk_libs + [
         "stdc++", "gcc", "m", "c", "pthread",
-        "-Wl,--end-group"
     ],
 
     LIBSOURCE_DIRS=[
@@ -256,6 +253,7 @@ env.Append(
         "-Wl,--start-group",
         "-Wl,-EL",
         "-Wl,--no-check-sections",
+        "-T", "esp32_out.ld",
         "-T", "esp32.common.ld",
         "-T", "esp32.rom.ld",
         "-T", "esp32.peripherals.ld",
@@ -314,9 +312,6 @@ env.Depends("$BUILD_DIR/$PROGNAME$PROGSUFFIX", partition_table)
 # Source filter: compile everything in cores/esp32/
 # except libb64 files which are sometimes already in the SDK
 src_filter = ["+<*>", "-<.git/>", "-<.svn/>"]
-
-env.Prepend(_LIBFLAGS="-Wl,--start-group ")
-env.Append(_LIBFLAGS=" -Wl,--end-group")
 
 env.BuildSources(
     join("$BUILD_DIR", "FrameworkArduino"),
