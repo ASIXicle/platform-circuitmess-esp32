@@ -134,13 +134,13 @@ env.Append(
         "-Wno-sign-compare",
         "-fstack-protector",
         "-fexceptions",
-        "-Werror=reorder"
+        "-Wreorder"
     ],
 
     CXXFLAGS=[
         "-fno-rtti",
         "-fno-exceptions",
-        "-std=gnu++11"
+        "-std=gnu++14"
     ],
 
     CPPDEFINES=[
@@ -232,8 +232,11 @@ env.Append(
         join(SDK_DIR, "ld"),
     ],
 
-    LIBS=sdk_libs + [
-        "stdc++", "gcc", "m", "c", "pthread"
+    LIBS=[
+        "-Wl,--start-group"
+    ] + sdk_libs + [
+        "stdc++", "gcc", "m", "c", "pthread",
+        "-Wl,--end-group"
     ],
 
     LIBSOURCE_DIRS=[
@@ -248,13 +251,16 @@ env.Append(
         "-u", "esp_app_desc",
         "-Wl,--undefined=uxTopUsedPriority",
         "-Wl,--gc-sections",
+        "-Wl,--noinhibit-exec",
+        "-Wl,--no-check-sections",
+        "-Wl,--start-group",
         "-Wl,-EL",
+        "-Wl,--no-check-sections",
         "-T", "esp32.common.ld",
         "-T", "esp32.rom.ld",
         "-T", "esp32.peripherals.ld",
         "-T", "esp32.rom.libgcc.ld",
         "-T", "esp32.rom.spiram_incompatible_fns.ld",
-        "-T", ldscript,
         "-u", "__cxa_guard_dummy",
         "-u", "__cxx_fatal_exception",
     ],
@@ -308,6 +314,9 @@ env.Depends("$BUILD_DIR/$PROGNAME$PROGSUFFIX", partition_table)
 # Source filter: compile everything in cores/esp32/
 # except libb64 files which are sometimes already in the SDK
 src_filter = ["+<*>", "-<.git/>", "-<.svn/>"]
+
+env.Prepend(_LIBFLAGS="-Wl,--start-group ")
+env.Append(_LIBFLAGS=" -Wl,--end-group")
 
 env.BuildSources(
     join("$BUILD_DIR", "FrameworkArduino"),

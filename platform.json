@@ -14,7 +14,7 @@
     "Chatter"
   ],
   "engines": {
-    "platformio": "^5 || ^6"
+    "platformio": "^6"
   },
   "repository": {
     "type": "git",

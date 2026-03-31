@@ -22,7 +22,7 @@ except ImportError:
     from platformio.managers.platform import PlatformBase
 
 
-class CircuitmessEsp32Platform(PlatformBase):
+class Circuitmessesp32Platform(PlatformBase):
     def configure_default_packages(self, variables, targets):
         if "buildfs" in targets:
             self.packages["tool-mkspiffs"]["optional"] = False
